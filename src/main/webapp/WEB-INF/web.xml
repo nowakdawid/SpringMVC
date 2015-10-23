@@ -16,4 +16,11 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
         <servlet-name>DispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <page-encoding>ISO-8859-2</page-encoding>
+        </jsp-property-group>
+    </jsp-config>
 </web-app>
+
