@@ -1,5 +1,6 @@
 package com.packt.webstore.domain.repository.impl;
 
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -102,6 +103,62 @@ public class InMemoryProductRepository implements ProductRepository {
 
         productsByCategory.retainAll(productsByBrand);
         return productsByCategory;
+
+    }
+
+    public Set<Product> getProductsByPrice(Map<String, List<String>> priceParams) {
+
+        Set<Product> productsByPrice = new HashSet<Product>();
+        Set<String> criterias = priceParams.keySet();
+        int low = 0;
+        int high = 0;
+
+        if (criterias.contains("low")) {
+
+            for (String lowPrice : priceParams.get("low")) {
+
+                low = Integer.parseInt(lowPrice);
+
+
+            }
+        }
+        if (criterias.contains("high")) {
+
+            for (String highPrice : priceParams.get("high")) {
+
+                high = Integer.parseInt(highPrice);
+
+            }
+        }
+
+        for (Product product : listOfProducts) {
+
+            if (((product.getUnitPrice().intValue()) >= low) && ((product.getUnitPrice().intValue()) <= high)) {
+
+                productsByPrice.add(product);
+
+            }
+
+        }
+
+        return productsByPrice;
+    }
+
+    public List<Product> getProductsByManufacturer(String manufacturer) {
+
+        List<Product> productsByManufacturer = new ArrayList<Product>();
+
+        for (Product product : listOfProducts) {
+
+            if (manufacturer.equalsIgnoreCase(product.getManufacturer())) {
+
+                productsByManufacturer.add(product);
+
+            }
+
+        }
+
+        return productsByManufacturer;
 
     }
 

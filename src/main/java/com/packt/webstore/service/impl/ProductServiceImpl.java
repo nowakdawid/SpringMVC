@@ -6,6 +6,7 @@ import com.packt.webstore.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -39,5 +40,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProductById(String id) {
         return productRepository.getProductById(id);
+    }
+
+    @Override
+    public List<Product> getProductsByManufacturer(String manufacturer) {
+        return productRepository.getProductsByManufacturer(manufacturer);
+    }
+
+    @Override
+    public Set<Product> getProductsByPrice(Map<String, List<String>> priceParams) {
+        return productRepository.getProductsByPrice(priceParams);
     }
 }

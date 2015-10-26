@@ -1,16 +1,13 @@
 package com.packt.webstore.controller;
 
+import com.packt.webstore.domain.Product;
 import com.packt.webstore.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.MatrixVariable;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/products")
@@ -44,7 +41,7 @@ public class ProductController {
     }
 
     @RequestMapping("/filter/{ByCriteria}")
-    public String getProductsByFilter(@MatrixVariable(pathVar="ByCriteria") Map<String,List<String>> filterParams, Model model) {
+    public String getProductsByFilter(@MatrixVariable(pathVar = "ByCriteria") Map<String, List<String>> filterParams, Model model) {
 
         model.addAttribute("products", productService.getProductsByFilter(filterParams));
         return "products";
@@ -56,6 +53,19 @@ public class ProductController {
 
         model.addAttribute("product", productService.getProductById(productId));
         return "product";
+
+    }
+
+    @RequestMapping("/{category}/{price}")
+    public String filterProducts(Model model, @PathVariable("category") String productCategory, @MatrixVariable(pathVar = "price") Map<String,List<String>> price, @RequestParam("manufacturer") String productManufacturer) {
+
+        Set<Product> filteredProducts = new HashSet<Product>();
+        filteredProducts.addAll(productService.getProductsByCategory(productCategory));
+        filteredProducts.addAll(productService.getProductsByPrice(price));
+        filteredProducts.addAll(productService.getProductsByManufacturer(productManufacturer));
+
+        model.addAttribute("products", filteredProducts);
+        return "products";
 
     }
 
