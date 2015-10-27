@@ -57,7 +57,7 @@ public class ProductController {
     }
 
     @RequestMapping("/{category}/{price}")
-    public String filterProducts(Model model, @PathVariable("category") String productCategory, @MatrixVariable(pathVar = "price") Map<String,List<String>> price, @RequestParam("manufacturer") String productManufacturer) {
+    public String filterProducts(Model model, @PathVariable("category") String productCategory, @MatrixVariable(pathVar = "price") Map<String, List<String>> price, @RequestParam("manufacturer") String productManufacturer) {
 
         Set<Product> filteredProducts = new HashSet<Product>();
         filteredProducts.addAll(productService.getProductsByCategory(productCategory));
@@ -66,6 +66,23 @@ public class ProductController {
 
         model.addAttribute("products", filteredProducts);
         return "products";
+
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String getAddNewProductForm(Model model) {
+
+        Product newProduct = new Product();
+        model.addAttribute("newProduct", newProduct);
+        return "addProduct";
+
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String processAddNewProductForm(@ModelAttribute("newProduct") Product newProduct) {
+
+        productService.addProduct(newProduct);
+        return "redirect:/products";
 
     }
 
