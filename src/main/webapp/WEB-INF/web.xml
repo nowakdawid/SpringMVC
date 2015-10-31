@@ -11,6 +11,13 @@
         </init-param>
     </servlet>
 
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <page-encoding>ISO-8859-2</page-encoding>
+        </jsp-property-group>
+    </jsp-config>
+
     <servlet-mapping>
         <servlet-name>DispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>
@@ -34,7 +41,5 @@
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
-
 
 </web-app>
