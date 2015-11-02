@@ -1,10 +1,16 @@
 package com.packt.webstore.domain;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import java.math.BigDecimal;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.springframework.web.multipart.MultipartFile;
+
+@XmlRootElement
 public class Product {
+
     private String productId;
     private String name;
     private BigDecimal unitPrice;
@@ -16,8 +22,11 @@ public class Product {
     private boolean discontinued;
     private String condition;
 
-    private MultipartFile productImage;
+    @JsonIgnore
     private MultipartFile productManual;
+
+    @JsonIgnore
+    private MultipartFile  productImage;
 
     public Product() {
         super();
@@ -29,20 +38,13 @@ public class Product {
         this.unitPrice = unitPrice;
     }
 
+    @XmlTransient
     public MultipartFile getProductManual() {
         return productManual;
     }
 
     public void setProductManual(MultipartFile productManual) {
         this.productManual = productManual;
-    }
-
-    public MultipartFile getProductImage() {
-        return productImage;
-    }
-
-    public void setProductImage(MultipartFile productImage) {
-        this.productImage = productImage;
     }
 
     public String getProductId() {
@@ -71,6 +73,15 @@ public class Product {
 
     public String getDescription() {
         return description;
+    }
+
+    @XmlTransient
+    public MultipartFile getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(MultipartFile productImage) {
+        this.productImage = productImage;
     }
 
     public void setDescription(String description) {
@@ -146,7 +157,8 @@ public class Product {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((productId == null) ? 0 : productId.hashCode());
+        result = prime * result
+                + ((productId == null) ? 0 : productId.hashCode());
         return result;
     }
 
@@ -154,5 +166,4 @@ public class Product {
     public String toString() {
         return "Product [productId=" + productId + ", name=" + name + "]";
     }
-
 }
