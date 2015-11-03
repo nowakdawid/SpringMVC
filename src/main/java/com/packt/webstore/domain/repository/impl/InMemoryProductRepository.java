@@ -4,6 +4,8 @@ import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.util.*;
 
+import com.packt.webstore.exception.NoProductsFoundUnderCategoryException;
+import com.packt.webstore.exception.ProductNotFoundException;
 import org.springframework.stereotype.Repository;
 import com.packt.webstore.domain.Product;
 import com.packt.webstore.domain.repository.ProductRepository;
@@ -40,17 +42,28 @@ public class InMemoryProductRepository implements ProductRepository {
     }
 
     public Product getProductById(String productId) {
+
         Product productById = null;
+
         for (Product product : listOfProducts) {
+
             if (product != null && product.getProductId() != null && product.getProductId().equals(productId)) {
+
                 productById = product;
                 break;
+
             }
+
         }
-        if (productById == null) {
-            throw new IllegalArgumentException("No products found with the product id: " + productId);
+
+        if(productById == null){
+
+            throw new ProductNotFoundException("No products found with the product id: "+ productId);
+
         }
+
         return productById;
+
     }
 
     public List<Product> getProductsByCategory(String category) {

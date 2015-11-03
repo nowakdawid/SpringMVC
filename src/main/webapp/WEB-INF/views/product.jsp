@@ -42,11 +42,15 @@
                 ${product.unitsInStock}
             </p>
             <h4>${product.unitPrice} $USD</h4>
+            <p>
+                <a href="<c:url value="/resource/manuals/${product.productId}.pdf"></c:url>" target="new" class="btn btndefault">
+                    Product manual - PDF
+                </a>
+            </p>
             <a href="<spring:url value="/products" />" class="btn btndefault">
                 <span class="glyphicon-hand-left glyphicon"></span>
                 back
             </a>
-
             <p>
                 <a href="#" class="btn btn-warning btn-large"> <span class="glyphicon-shopping-cart glyphicon"></span>
                     Order Now
