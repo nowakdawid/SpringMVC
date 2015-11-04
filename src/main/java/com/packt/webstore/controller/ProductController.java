@@ -141,7 +141,7 @@ public class ProductController {
 
         binder.setDisallowedFields("unitsInOrder", "discontinued");
 
-        binder.setAllowedFields("productId","name","unitPrice","description","manufacturer","category","unitsInStock","condition","productImage","productManual");
+        binder.setAllowedFields("productId","name","unitPrice","description","manufacturer","category","unitsInStock","condition","productImage","productManual","language");
 
     }
 

@@ -17,6 +17,9 @@
             <p>Add products</p>
         </div>
         <a href="<c:url value="/j_spring_security_logout" />" class="btn btn-danger btn-mini pull-right">logout</a>
+        <div class="pull-right" style="padding-right:50px">
+            <a href="?language=en" >English</a>|<a href="?language=nl">Dutch</a>|<a href="?language=pl">Polski</a>
+        </div>
     </div>
 </section>
 <section class="container">
@@ -30,11 +33,12 @@
 
                 <div class="col-lg-10">
                     <form:input id="productId" path="productId" type="text" class="form:input-large"/>
-
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-lg-2 col-lg-2" for="productId">Name</label>
+                <label class="control-label col-lg-2 col-lg-2" for="productId">
+                    <spring:message code="addProduct.form.name.label"/>
+                </label>
 
                 <div class="col-lg-10">
                     <form:input id="name" path="name" type="text" class="form:input-large"/>
@@ -42,7 +46,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-lg-2 col-lg-2" for="productId">Unit price</label>
+                <label class="control-label col-lg-2 col-lg-2" for="productId">
+                    <spring:message code="addProduct.form.unitPrice.label"/>
+                </label>
 
                 <div class="col-lg-10">
                     <form:input id="unitPrice" path="unitPrice" type="text" class="form:input-large"/>
@@ -50,7 +56,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-lg-2 col-lg-2" for="productId">Manufacturer</label>
+                <label class="control-label col-lg-2 col-lg-2" for="productId">
+                    <spring:message code="addProduct.form.manufacturer.label"/>
+                </label>
 
                 <div class="col-lg-10">
                     <form:input id="manufacturer" path="manufacturer" type="text" class="form:input-large"/>
@@ -58,7 +66,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-lg-2 col-lg-2" for="productId">Category</label>
+                <label class="control-label col-lg-2 col-lg-2" for="productId">
+                    <spring:message code="addProduct.form.category.label"/>
+                </label>
 
                 <div class="col-lg-10">
                     <form:input id="category" path="category" type="text" class="form:input-large"/>
@@ -66,7 +76,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-lg-2 col-lg-2" for="productId">Units in stock</label>
+                <label class="control-label col-lg-2 col-lg-2" for="productId">
+                    <spring:message code="addProduct.form.unitsInStock.label"/>
+                </label>
 
                 <div class="col-lg-10">
                     <form:input id="unitsInStock" path="unitsInStock" type="text" class="form:input-large"/>
@@ -74,14 +86,18 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-lg-2" for="description">Description</label>
+                <label class="control-label col-lg-2 col-lg-2" for="productId">
+                    <spring:message code="addProduct.form.description.label"/>
+                </label>
 
                 <div class="col-lg-10">
                     <form:textarea id="description" path="description" rows="2"/>
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-lg-2" for="condition">Condition</label>
+                <label class="control-label col-lg-2 col-lg-2" for="productId">
+                    <spring:message code="addProduct.form.condition.label"/>
+                </label>
 
                 <div class="col-lg-10">
                     <form:radiobutton path="condition" value="New"/>New
