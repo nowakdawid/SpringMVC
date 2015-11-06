@@ -2,6 +2,7 @@ package com.packt.webstore.domain;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -11,9 +12,17 @@ import org.springframework.web.multipart.MultipartFile;
 @XmlRootElement
 public class Product {
 
+    @Pattern(regexp = "P[0-9]+", message = "{Pattern.Product.productId.validation}")
     private String productId;
+
+    @Size(min = 4, max = 50, message = "{Size.Product.name.validation}")
     private String name;
+
+    @Min(value = 0, message = "Min.Product.unitPrice.validation}")
+    @Digits(integer = 8, fraction = 2, message = "{Digits.Product.unitPrice. validation}")
+    @NotNull(message = "{NotNull.Product.unitPrice.validation}")
     private BigDecimal unitPrice;
+
     private String description;
     private String manufacturer;
     private String category;
@@ -26,7 +35,7 @@ public class Product {
     private MultipartFile productManual;
 
     @JsonIgnore
-    private MultipartFile  productImage;
+    private MultipartFile productImage;
 
     public Product() {
         super();

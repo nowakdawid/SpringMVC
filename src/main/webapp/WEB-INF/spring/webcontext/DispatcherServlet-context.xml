@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
 
-    <mvc:annotation-driven enable-matrix-variables="true"/>
+    <mvc:annotation-driven enable-matrix-variables="true" validator="validator"/>
 
     <context:component-scan base-package="com.packt.webstore" />
 
@@ -17,7 +17,17 @@
         <bean class= "org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
             <property name="paramName" value="language"/>
         </bean>
+        <bean class="com.packt.webstore.interceptor.AuditingInterceptor" />
+        <bean class="com.packt.webstore.interceptor.PromoCodeInterceptor">
+            <property name="promoCode" value="OFF3R"/>
+            <property name="errorRedirect" value="invalidPromoCode"/>
+            <property name="offerRedirect" value="products"/>
+        </bean>
     </mvc:interceptors>
+
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/" />
