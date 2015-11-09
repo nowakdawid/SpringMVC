@@ -14,18 +14,19 @@ public class Product {
 
     @Pattern(regexp = "P[0-9]+", message = "{Pattern.Product.productId.validation}")
     private String productId;
-
     @Size(min = 4, max = 50, message = "{Size.Product.name.validation}")
     private String name;
-
-    @Min(value = 0, message = "Min.Product.unitPrice.validation}")
-    @Digits(integer = 8, fraction = 2, message = "{Digits.Product.unitPrice. validation}")
+    @Min(value = 0, message = "{Min.Product.unitPrice.validation}")
+    @Digits(integer = 8, fraction = 2, message = "{Digits.Product.unitPrice.validation}")
     @NotNull(message = "{NotNull.Product.unitPrice.validation}")
     private BigDecimal unitPrice;
-
     private String description;
     private String manufacturer;
+    @Size(min = 4, max = 50, message = "{Size.Product.category.validation}")
     private String category;
+    @Min(value = 0, message = "{Min.Product.unitsInStock.validation}")
+    @Digits(integer = 8, fraction = 2, message = "{Digits.Product.unitsInStock.validation}")
+    @NotNull(message = "{NotNull.Product.unitsInStock.validation}")
     private long unitsInStock;
     private long unitsInOrder;
     private boolean discontinued;

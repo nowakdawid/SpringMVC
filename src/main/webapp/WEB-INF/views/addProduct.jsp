@@ -75,7 +75,7 @@
 
                 <div class="col-lg-10">
                     <form:input id="category" path="category" type="text" class="form:input-large"/>
-
+                    <form:errors path="category" cssClass="text-danger"/>
                 </div>
             </div>
             <div class="form-group">
@@ -85,7 +85,7 @@
 
                 <div class="col-lg-10">
                     <form:input id="unitsInStock" path="unitsInStock" type="text" class="form:input-large"/>
-
+                    <form:errors path="unitsInStock" cssClass="text-danger"/>
                 </div>
             </div>
             <div class="form-group">
