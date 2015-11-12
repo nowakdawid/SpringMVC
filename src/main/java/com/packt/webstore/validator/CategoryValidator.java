@@ -19,8 +19,12 @@ public class CategoryValidator implements ConstraintValidator<Category, String> 
     }
 
     @Override
-    public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        return false;
+    public boolean isValid(String value, ConstraintValidatorContext constraintValidatorContext) {
+
+
+        if (Category.allowedCategories.contains(value)==true) return true;
+        else return false;
+
     }
 
 }

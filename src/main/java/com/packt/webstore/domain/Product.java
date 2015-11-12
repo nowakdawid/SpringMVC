@@ -6,6 +6,7 @@ import javax.validation.constraints.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.packt.webstore.validator.Category;
 import com.packt.webstore.validator.ProductId;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 @XmlRootElement
 public class Product {
 
-    @Pattern(regexp="P[0-9]+", message="{Pattern.Product.productId. validation}")
+    @Pattern(regexp="P[0-9]+", message="{Pattern.Product.productId.validation}")
     @ProductId
     private String productId;
     @Size(min = 4, max = 50, message = "{Size.Product.name.validation}")
@@ -24,7 +25,7 @@ public class Product {
     private BigDecimal unitPrice;
     private String description;
     private String manufacturer;
-    @Size(min = 4, max = 50, message = "{Size.Product.category.validation}")
+    @Category
     private String category;
     @Min(value = 0, message = "{Min.Product.unitsInStock.validation}")
     @Digits(integer = 8, fraction = 2, message = "{Digits.Product.unitsInStock.validation}")
