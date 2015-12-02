@@ -1,5 +1,6 @@
 package com.packt.webstore.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.validation.constraints.*;
@@ -12,8 +13,10 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
 @XmlRootElement
-public class Product {
+public class Product implements Serializable {
 
+
+    private static final long serialVersionUID = 2284050486662162898L;
     @Pattern(regexp="P[0-9]+", message="{Pattern.Product.productId.validation}")
     @ProductId
     private String productId;
@@ -50,6 +53,11 @@ public class Product {
         this.name = name;
         this.unitPrice = unitPrice;
     }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
 
     @XmlTransient
     public MultipartFile getProductManual() {

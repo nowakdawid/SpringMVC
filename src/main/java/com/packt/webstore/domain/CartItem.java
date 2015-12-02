@@ -4,9 +4,15 @@ import java.math.BigDecimal;
 
 public class CartItem {
 
+    private static final long serialVersionUID = 974040497482162898L;
+
     private Product product;
     private int quantity;
     private BigDecimal totalPrice;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public CartItem() {
 // TODO Auto-generated constructor stub

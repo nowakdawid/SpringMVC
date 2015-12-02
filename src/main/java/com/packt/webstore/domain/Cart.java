@@ -6,9 +6,15 @@ import java.util.Map;
 
 public class Cart {
 
+    private static final long serialVersionUID = 4284040482222174925L;
+
     private String cartId;
     private Map<String, CartItem> cartItems;
     private BigDecimal grandTotal;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Cart() {
         cartItems = new HashMap<String, CartItem>();
